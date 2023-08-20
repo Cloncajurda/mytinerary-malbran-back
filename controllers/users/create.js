@@ -7,7 +7,7 @@ export default async(req,res) => {
       return res.status(201).json({
         success: true,
         message: 'user created',
-        response: newUser
+        response: newUser._id
       })
     } catch(err){
       return res.status(400).json({
