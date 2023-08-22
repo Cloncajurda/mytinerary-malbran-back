@@ -8,6 +8,7 @@ import notFoundHandler from './middlewares/notFoundHandler.js';
 // import cookieParser from 'cookie-parser'; Modulo para manejo de cookies
 import logger from 'morgan'; //hace un registro de la peticion
 import indexRouter from './routes/index.js'; // Solo configuro las rutas del enrutador del back ppal, que llamará al resto de los recursos.
+import cors from 'cors'
 
 let app = express(); // ejecuta el modulo de Express.
 
@@ -19,7 +20,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Router
