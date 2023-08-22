@@ -11,6 +11,8 @@ let schema =new Schema({
     smalldescription: {type:String, default:"edit later"},
     featuredLocation: {type:String, default:"edit later"},
     admin_id: {type:Types.ObjectId, required:true, ref:'users'}
+},{
+    timestamps: true
 })
 
 let City = model(collection, schema)

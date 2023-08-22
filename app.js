@@ -3,9 +3,12 @@ import __dirname from './utils.js';
 import createError from 'http-errors';
 import express from 'express';
 import path from 'path';
+import errorHandler from './middlewares/errorHandler.js';
+import notFoundHandler from './middlewares/notFoundHandler.js';
 // import cookieParser from 'cookie-parser'; Modulo para manejo de cookies
 import logger from 'morgan'; //hace un registro de la peticion
 import indexRouter from './routes/index.js'; // Solo configuro las rutas del enrutador del back ppal, que llamará al resto de los recursos.
+import cors from 'cors'
 
 let app = express(); // ejecuta el modulo de Express.
 
@@ -17,26 +20,16 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Router
 app.use('/api', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+app.use(notFoundHandler);
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+app.use(errorHandler);
 
 export default app;
