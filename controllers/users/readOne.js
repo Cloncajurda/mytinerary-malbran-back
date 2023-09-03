@@ -12,9 +12,9 @@ export default async (req, res) => {
             response: oneUser
           })
         }else {
-          return res.status(200).json({
+          return res.status(404).json({
             success: false,
-            message: 'not found',
+            message: 'not found user',
             response: oneUser
           })
         }

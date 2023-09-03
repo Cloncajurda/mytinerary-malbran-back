@@ -1,9 +1,9 @@
 import { model, Schema, Types} from "mongoose";
 
 let collection = "cities"
-let schema =new Schema({
+let schema = new Schema({
     country: { type:String, required:true},
-    fundation: {type:Date, required:true},
+    fundation: {type:String, required:true},
     population: {type:Number},
     photo: {type:String, required:true},
     city:{type:String, require:true},
