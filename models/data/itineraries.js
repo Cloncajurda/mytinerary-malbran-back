@@ -147,4 +147,3 @@ async function createItineraries(arrayItineraries) {
 }
 
 createItineraries(itineraries)
-console.log (createItineraries)

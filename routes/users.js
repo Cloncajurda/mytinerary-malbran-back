@@ -1,5 +1,8 @@
 import express from 'express';
 //import req from 'express/lib/request';
+import passport from '../middlewares/passport.js';
+import updatePassHash from '../middlewares/updatePasssHash.js';
+
 import create from '../controllers/users/create.js'
 import read from '../controllers/users/read.js'
 import readOne from '../controllers/users/readOne.js';
@@ -12,13 +15,13 @@ let router = express.Router();
 //});
 
 // CREATE
-router.post('/',create)
+router.post('/signup',create)
 //READ
 router.get('/', read)
 //READ ONE
 router.get('/:user_id', readOne)
 //UPDATE
-router.put('/:u_id', update)
+router.put('/', passport.authenticate("jwt",{ session:false }), updatePassHash, update)
 //DESTROY
 router.delete('/:id', destroy)
 
